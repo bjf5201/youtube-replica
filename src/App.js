@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./utils/Theme";
 import { useLightMode } from "./utils/useLightMode";
-import ErrorPage from './error-page';
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
 import Home from "./routes/Home";
@@ -40,6 +39,7 @@ function App() {
               <Routes>
                 <Route path="/">
                   <Route index element={<Home />} />
+                  <Route path="signin"element={<SignIn />} />
                   <Route path="video">
                     <Route path=":id" element={<Video />} />
                   </Route>
