@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import CitiznTube from '../img/logo.png';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -91,10 +92,12 @@ const Menu = ({theme, setTheme, themeToggler}) => {
   return (
     <Container>
       <Wrapper>
+        <Link to="/" style={{ textDecoration: "none", color:"inherit" }}>
           <Logo>
             <Img src={CitiznTube} />
             CitiznTube
           </Logo>
+        </Link>
         <Item>
           <HomeOutlinedIcon />
           Home

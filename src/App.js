@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./utils/Theme";
 import { useLightMode } from "./utils/useLightMode";
@@ -7,20 +7,8 @@ import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
 import Home from "./routes/Home";
 import Video from "./routes/Video";
+import SignIn from "./routes/SignIn";
 
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "video/:id",
-    element: <Video />,
-  },
-]);
 
 const Container = styled.div`
   display: flex;
@@ -43,14 +31,23 @@ function App() {
   return (
     <ThemeProvider theme={themeMode}>
       <Container>
-        <GlobalStyles />
-        <Menu theme={theme} themeToggler={themeToggler} />
-        <Main>
-          <Navbar />
-          <Wrapper>
-            <RouterProvider router={router} />
-          </Wrapper>
-        </Main>
+        <BrowserRouter>
+          <GlobalStyles />
+          <Menu theme={theme} themeToggler={themeToggler} />
+          <Main>
+            <Navbar />
+            <Wrapper>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Home />} />
+                  <Route path="video">
+                    <Route path=":id" element={<Video />} />
+                  </Route>
+                </Route>
+              </Routes>
+            </Wrapper>
+          </Main>
+        </BrowserRouter>
       </Container>
     </ThemeProvider>
   );
